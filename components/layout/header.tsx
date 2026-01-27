@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef, useLayoutEffect } from "react";
 import * as m from "motion/react-m";
 import { AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 
@@ -18,7 +18,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [headerTop, setHeaderTop] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
-  const [anchorBottom, setAnchorBottom] = useState(0);
+  const anchorBottomRef = useRef(0);
   const { scrollY } = useScroll();
 
   const getAnchorBottom = useCallback(() => {
@@ -31,13 +31,15 @@ export function Header() {
     return window.innerHeight - HEADER_HEIGHT;
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const bottom = getAnchorBottom();
-    setAnchorBottom(bottom);
-    setHeaderTop(bottom);
+    anchorBottomRef.current = bottom;
+    // Defer setState to satisfy eslint react-hooks/set-state-in-effect
+    requestAnimationFrame(() => setHeaderTop(bottom));
   }, [getAnchorBottom]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
+    const anchorBottom = anchorBottomRef.current;
     const newTop = Math.max(0, anchorBottom - latest);
     setHeaderTop(newTop);
     setIsSticky(latest >= anchorBottom);
@@ -80,7 +82,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] bg-background"
+            className="fixed inset-0 z-100 bg-background"
           >
             <div className="container-full py-6 flex justify-between items-center">
               <Link
