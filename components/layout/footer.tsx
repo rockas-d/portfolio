@@ -17,10 +17,10 @@ const externalLinks = [
 
 export function Footer() {
   return (
-    <footer style={{ background: "#d4ff00", color: "#0a0a0a" }}>
-      <div className="px-4 md:px-8 py-16 lg:py-24">
-        <div className="flex flex-col lg:flex-row lg:justify-between gap-16">
-          <div className="flex flex-col gap-10">
+    <footer className="fixed bottom-0 left-0 right-0 z-0" style={{ background: "#fc5858", color: "#0a0a0a" }}>
+      <div className="px-4 md:px-8 py-8 md:py-16 lg:py-24">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-8 lg:gap-16">
+          <div className="flex flex-col gap-6 md:gap-10">
             <div>
               <p className="text-xs uppercase tracking-widest opacity-60 mb-3">FIND ME</p>
               <address className="not-italic mono text-xl md:text-2xl">
@@ -65,11 +65,11 @@ export function Footer() {
 
           <div className="text-right">
             <a
-              href="mailto:hello@demetriosrockas.com"
+              href="mailto:demetriosrockas@proton.me"
               className="inline-block"
             >
-              <h2 className="display-huge mb-8">HELLO@</h2>
-              <span className="display-large block">DEMETRIOSROCKAS.COM</span>
+              <h2 className="font-black uppercase leading-none tracking-tight mb-2 md:mb-4 text-[clamp(1.5rem,8vw,3rem)] md:text-[clamp(2.5rem,10vw,10rem)]">DEMETRIOSROCKAS@</h2>
+              <span className="font-extrabold uppercase leading-none tracking-tight text-[clamp(1.25rem,6vw,2rem)] md:text-[clamp(2rem,8vw,8rem)] block">PROTON.ME</span>
             </a>
 
             <div className="mt-8">
@@ -79,7 +79,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-[#0a0a0a]/20 flex justify-between items-center">
+        <div className="mt-8 md:mt-16 pt-6 md:pt-8 border-t border-[#0a0a0a]/20 flex justify-between items-center">
           <Crosshair />
           <p className="mono text-xs opacity-60">
             © {new Date().getFullYear()} DEMETRIOS ROCKAS

@@ -13,7 +13,7 @@ An Awwwards-style portfolio website built with Next.js 16, featuring immersive a
 ### Design System
 - **Massive Typography** — Display sizes up to 20vw for high-impact headlines
 - **Dark Theme** — `#0a0a0a` background with `#fafafa` foreground
-- **Lime Accent** — `#d4ff00` accent color for CTAs and highlights
+- **Coral Accent** — `#fc5858` accent color for CTAs and highlights
 - **Geist Font** — Clean, modern typeface optimized for web
 
 ### Interactive Elements
@@ -23,7 +23,7 @@ An Awwwards-style portfolio website built with Next.js 16, featuring immersive a
   - `mix-blend-difference` for automatic color inversion
 - **WebGL Morphing Blob** — Organic icosahedron with simplex noise displacement
   - Mouse-reactive ripple effects
-  - Lime color splashes on interaction
+  - Accent color splashes on interaction
   - Multi-light shading with fresnel and rim lighting
 - **Magnetic Buttons** — Subtle magnetic pull effect on hover
 - **Smooth Scrolling** — Lenis for buttery smooth scroll experience
@@ -34,12 +34,12 @@ An Awwwards-style portfolio website built with Next.js 16, featuring immersive a
 | Home | `/` | Hero with blob, services, about preview, featured work |
 | Work | `/work` | Project grid with hover effects |
 | About | `/about` | Bio, skills, experience timeline |
-| Contact | `/contact` | Contact info with lime CTA section |
+| Contact | `/contact` | Contact info with accent CTA section |
 
 ### Layout Components
 - **Sticky Header** — Starts at hero bottom, sticks to viewport top on scroll
 - **Full-Screen Menu** — Overlay menu with massive typography links
-- **Lime Footer** — High-contrast footer with email CTA
+- **Accent Footer** — High-contrast footer with email CTA
 
 ## Tech Stack
 
@@ -137,7 +137,7 @@ Update your details in the following files:
    ];
    ```
 
-2. **Email** — Search for `hello@demetriosrockas.com` and replace globally
+2. **Email** — Search for `demetriosrockas@proton.me` and replace globally
 
 3. **Location** — Update "SEATTLE, WA" in footer and contact page
 
@@ -151,7 +151,7 @@ Edit CSS variables in `app/globals.css`:
 :root {
   --background: #0a0a0a;      /* Main background */
   --foreground: #fafafa;      /* Main text */
-  --accent: #d4ff00;          /* Lime accent */
+  --accent: #fc5858;          /* Coral accent */
   --muted-foreground: #737373; /* Secondary text */
   --border: #262626;          /* Border color */
 }

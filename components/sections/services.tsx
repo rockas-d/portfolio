@@ -3,100 +3,111 @@
 import { useRef } from "react";
 import * as m from "motion/react-m";
 import { useInView } from "motion/react";
-import Link from "next/link";
-import { Crosshair } from "@/components/ui";
 
-interface Service {
+interface Capability {
   id: string;
   title: string;
+  description: string;
 }
 
-const services: Service[] = [
-  { id: "01", title: "Experience Strategy & Design" },
-  { id: "02", title: "Frontend Development" },
-  { id: "03", title: "Creative Direction" },
-  { id: "04", title: "Motion & Interaction" },
-  { id: "05", title: "Technical Consulting" },
+const capabilities: Capability[] = [
+  {
+    id: "01",
+    title: "I Build the Whole Thing",
+    description: "Frontend, backend, database, deployment — I don't throw it over a wall to someone else.",
+  },
+  {
+    id: "02",
+    title: "AI That Actually Works",
+    description: "Not chatbots slapped onto landing pages. Real AI products that solve real problems.",
+  },
+  {
+    id: "03",
+    title: "Pixels That Move Right",
+    description: "The scroll that feels like butter. The details that make something feel alive.",
+  },
+  {
+    id: "04",
+    title: "Math Meets Art",
+    description: "Shaders, generative systems, visualizations. The web is a canvas.",
+  },
 ];
 
-function ServiceItem({ service, index }: { service: Service; index: number }) {
+function CapabilityPanel({ capability, index }: { capability: Capability; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: false, amount: 0.4 });
+
+  const isEven = index % 2 === 0;
 
   return (
-    <m.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="border-t border-border"
+      className={`min-h-screen flex items-center sticky top-0 overflow-hidden ${
+        isEven ? "bg-[#0a0a0a] text-[#fafafa]" : "bg-[#fc5858] text-[#0a0a0a]"
+      }`}
     >
-      <div className="relative py-6 flex items-center justify-between group cursor-default transition-colors duration-300">
-        <div className="absolute inset-0 -inset-y-4 bg-[#d4ff00] scale-y-0 group-hover:scale-y-100 origin-center transition-transform duration-300" />
-        <h3 className="relative heading-lg group-hover:text-muted-foreground transition-colors">
-          {service.title}
-        </h3>
-        <span className="relative mono text-xs text-muted-foreground">
-          [ {service.id} ]
+      <m.div
+        initial={{ opacity: 0, x: isEven ? -100 : 100 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -100 : 100 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className={`absolute ${isEven ? "-left-8 lg:-left-16" : "-right-8 lg:-right-16"} top-1/2 -translate-y-1/2 pointer-events-none select-none`}
+      >
+        <span 
+          className={`font-black text-[40vw] leading-none ${
+            isEven ? "text-[#ffffff08]" : "text-[#0a0a0a10]"
+          }`}
+        >
+          {capability.id}
         </span>
+      </m.div>
+
+      <div className="container-full w-full py-24 relative z-10">
+        <div className={`flex flex-col ${isEven ? "items-start" : "items-end text-right"}`}>
+          <m.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={`mono text-xs mb-6 ${isEven ? "text-[#737373]" : "text-[#0a0a0a]/50"}`}
+          >
+            [ {capability.id} / 04 ]
+          </m.div>
+
+          <m.h2
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="display-large mb-8 max-w-4xl"
+          >
+            {capability.title}
+          </m.h2>
+
+          <m.div
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className={`h-px w-32 mb-8 ${isEven ? "bg-[#333] origin-left" : "bg-[#0a0a0a]/30 origin-right"}`}
+          />
+
+          <m.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className={`body-lg max-w-xl ${isEven ? "text-[#999]" : "text-[#0a0a0a]/70"}`}
+          >
+            {capability.description}
+          </m.p>
+        </div>
       </div>
-    </m.div>
+    </div>
   );
 }
 
 export function Services() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} className="section-padding bg-[#f5f5f5] text-[#0a0a0a]">
-      <div className="container-full">
-        <div className="grid-asymmetric">
-          <div>
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="sticky top-32"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <Crosshair className="text-[#737373]" />
-                <span className="mono text-xs text-[#737373]">[ 02 ]</span>
-              </div>
-              <h2 className="text-sm font-medium tracking-wider uppercase mb-8">
-                CAPABILITIES
-              </h2>
-
-              <div className="aspect-square max-w-xs bg-[#0a0a0a] flex items-center justify-center">
-                <span className="mono text-xs text-[#fafafa]">[ IMAGE ]</span>
-              </div>
-            </m.div>
-          </div>
-
-          <div>
-            <div className="mb-8">
-              {services.map((service, index) => (
-                <ServiceItem key={service.id} service={service} index={index} />
-              ))}
-              <div className="border-t border-[#d4d4d4]" />
-            </div>
-
-            <m.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.6 }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 mono text-xs text-[#737373] hover:text-[#0a0a0a] transition-colors"
-              >
-                <span>START A PROJECT</span>
-                <span>→</span>
-              </Link>
-            </m.div>
-          </div>
-        </div>
-      </div>
+    <section className="relative">
+      {capabilities.map((capability, index) => (
+        <CapabilityPanel key={capability.id} capability={capability} index={index} />
+      ))}
     </section>
   );
 }

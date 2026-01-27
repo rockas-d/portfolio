@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import * as m from "motion/react-m";
 import { useInView } from "motion/react";
 import { Crosshair } from "@/components/ui";
@@ -18,27 +19,27 @@ interface Project {
 const projects: Project[] = [
   {
     id: "01",
-    title: "Project Alpha",
-    category: "Web Development",
-    year: "2024",
-    href: "/work/project-alpha",
-    image: "/images/project-1.jpg",
+    title: "Luris AI",
+    category: "AI Platform for Law Firms",
+    year: "TBD",
+    href: "/work/luris",
+    image: "/work/luris.png",
   },
   {
     id: "02",
-    title: "Project Beta",
-    category: "Design & Development",
-    year: "2024",
-    href: "/work/project-beta",
-    image: "/images/project-2.jpg",
+    title: "Mural Studios",
+    category: "Production Studio Website",
+    year: "2026",
+    href: "/work/mural",
+    image: "/work/mural.png",
   },
   {
     id: "03",
-    title: "Project Gamma",
-    category: "Creative Direction",
-    year: "2023",
-    href: "/work/project-gamma",
-    image: "/images/project-3.jpg",
+    title: "Vertex",
+    category: "Math Visualization Tool",
+    year: "2026",
+    href: "/work/vertex",
+    image: "/work/vertex.png",
   },
 ];
 
@@ -55,11 +56,26 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.8, delay: index * 0.1 }}
     >
       <Link href={project.href} className="group block">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${isEven ? "" : "lg:direction-rtl"}`}>
-          <div className={`relative aspect-[4/3] bg-muted overflow-hidden ${isEven ? "lg:order-1" : "lg:order-2"}`}>
-            <div className="absolute inset-0 bg-muted flex items-center justify-center">
-              <span className="mono text-xs text-muted-foreground">[ IMAGE ]</span>
-            </div>
+        <div
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${isEven ? "" : "lg:direction-rtl"}`}
+        >
+          <div
+            className={`relative aspect-4/3 bg-black overflow-hidden ${isEven ? "lg:order-1" : "lg:order-2"}`}
+          >
+            {project.image ? (
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-muted flex items-center justify-center">
+                <span className="mono text-xs text-muted-foreground">
+                  [ IMAGE ]
+                </span>
+              </div>
+            )}
             <m.div
               className="absolute inset-0 bg-accent/10"
               initial={{ scaleX: 0 }}
@@ -69,24 +85,36 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
             />
           </div>
 
-          <div className={`${isEven ? "lg:order-2" : "lg:order-1"} ${isEven ? "" : "lg:text-right"}`}>
-            <div className={`flex items-center gap-4 mb-4 ${isEven ? "" : "lg:justify-end"}`}>
-              <span className="mono text-xs text-muted-foreground">[ {project.id} ]</span>
+          <div
+            className={`${isEven ? "lg:order-2" : "lg:order-1"} ${isEven ? "" : "lg:text-right"}`}
+          >
+            <div
+              className={`flex items-center gap-4 mb-4 ${isEven ? "" : "lg:justify-end"}`}
+            >
+              <span className="mono text-xs text-muted-foreground">
+                [ {project.id} ]
+              </span>
               <div className="rule flex-1 max-w-24" />
-              <span className="mono text-xs text-muted-foreground">{project.year}</span>
+              <span className="mono text-xs text-muted-foreground">
+                {project.year}
+              </span>
             </div>
 
-            <h3 className="display-medium mb-4 group-hover:text-muted-foreground transition-colors">
-              {project.title}
-            </h3>
+            <h3 className="display-medium mb-4">{project.title}</h3>
 
-            <p className="body-md text-muted-foreground mb-6">{project.category}</p>
+            <p className="body-md text-muted-foreground mb-6">
+              {project.category}
+            </p>
 
-            <div className={`flex items-center gap-3 ${isEven ? "" : "lg:justify-end"}`}>
+            <div
+              className={`flex items-center gap-3 ${isEven ? "" : "lg:justify-end"}`}
+            >
               <span className="mono text-xs group-hover:text-accent transition-colors">
                 VIEW PROJECT
               </span>
-              <span className="text-muted-foreground group-hover:text-accent transition-colors">→</span>
+              <span className="text-muted-foreground group-hover:text-accent transition-colors">
+                →
+              </span>
             </div>
           </div>
         </div>
@@ -100,7 +128,7 @@ export function FeaturedWork() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="section-padding border-t border-border">
+    <section ref={ref} className="section-padding">
       <div className="container-full">
         <div className="flex items-start justify-between mb-16">
           <m.div

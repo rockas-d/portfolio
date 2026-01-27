@@ -9,7 +9,7 @@
   --muted: #1a1a1a;
   --muted-foreground: #737373;
   --border: #262626;
-  --accent: #d4ff00;
+  --accent: #fc5858;
   --accent-foreground: #0a0a0a;
   --ring: #404040;
 
@@ -66,6 +66,28 @@
     line-height: 0.85;
     letter-spacing: -0.04em;
     text-transform: uppercase;
+  }
+
+  .display-xlarge {
+    font-size: clamp(2.5rem, 17vw, 18rem);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  .display-hero {
+    font-size: clamp(2.5rem, 11vw, 5rem);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .display-hero {
+      font-size: clamp(4rem, 17vw, 18rem);
+    }
   }
 
   .display-large {
@@ -202,6 +224,11 @@
       gap: 4rem;
     }
   }
+}
+
+html,
+body {
+  overflow-x: clip;
 }
 
 html.lenis,

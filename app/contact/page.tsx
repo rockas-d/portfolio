@@ -22,10 +22,11 @@ export default function ContactPage() {
     <>
       <CustomCursor />
       <MouseTracker />
-      <Header />
+      <div className="relative z-10 bg-background mb-[800px]">
+        <Header />
 
-      <main>
-        <section ref={heroRef} className="min-h-[60vh] flex flex-col justify-end section-padding">
+        <main>
+        <section ref={heroRef} data-header-anchor className="min-h-[60vh] flex flex-col justify-end section-padding">
           <div className="container-full">
             <div className="flex items-center gap-4 mb-8">
               <Crosshair className="text-muted-foreground" />
@@ -36,14 +37,14 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
-              className="display-large"
+              className="display-large mb-32 md:mb-0"
             >
               LET'S BUILD<br />SOMETHING<br />TOGETHER
             </m.h1>
           </div>
         </section>
 
-        <section ref={contentRef} className="section-padding border-t border-border">
+        <section ref={contentRef} className="section-padding">
           <div className="container-full">
             <div className="grid-asymmetric items-start">
               <m.div
@@ -55,10 +56,10 @@ export default function ContactPage() {
                   <div>
                     <span className="mono text-xs text-muted-foreground mb-4 block">[ EMAIL ]</span>
                     <a
-                      href="mailto:hello@demetriosrockas.com"
+                      href="mailto:demetriosrockas@proton.me"
                       className="heading-lg hover:text-muted-foreground transition-colors block"
                     >
-                      HELLO@DEMETRIOSROCKAS.COM
+                      DEMETRIOSROCKAS@PROTON.ME
                     </a>
                   </div>
 
@@ -98,25 +99,24 @@ export default function ContactPage() {
 
                 <div className="space-y-6 mb-12">
                   <p className="heading-lg">
-                    Currently accepting new projects for Q1 2026.
+                    Currently heads down at Luris.
                   </p>
                   <p className="body-lg text-muted-foreground">
-                    I'm always interested in hearing about new projects, especially 
-                    ambitious ones. Whether you're a startup looking to build your 
-                    first product or an established company seeking to push creative 
-                    boundaries, I'd love to hear from you.
+                    I'm working full-time on building Luris AI, so I'm not taking on 
+                    new freelance projects at the moment. That said, I'm always happy 
+                    to chat — whether it's about a potential collaboration down the road, 
+                    interesting ideas, or just to connect.
                   </p>
                   <p className="body-lg text-muted-foreground">
-                    The best way to reach me is via email. I typically respond 
-                    within 24-48 hours.
+                    Drop me an email and I'll get back to you when I can.
                   </p>
                 </div>
 
                 <div className="border-t border-border pt-8">
-                  <span className="mono text-xs text-muted-foreground mb-4 block">[ PREFER A QUICK CHAT? ]</span>
+                  <span className="mono text-xs text-muted-foreground mb-4 block">[ LET'S CONNECT ]</span>
                   <p className="body-md text-muted-foreground">
-                    Feel free to connect with me on LinkedIn for a more casual conversation 
-                    or to see what I've been working on lately.
+                    Find me on LinkedIn or GitHub to see what I'm up to. 
+                    Always down to talk tech, design, or whatever's on your mind.
                   </p>
                 </div>
               </m.div>
@@ -124,21 +124,8 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="section-padding" style={{ background: "#d4ff00", color: "#0a0a0a" }}>
-          <div className="container-full text-center">
-            <Crosshair className="mx-auto mb-8 opacity-40" />
-            <h2 className="display-medium mb-8">SAY HELLO</h2>
-            <a
-              href="mailto:hello@demetriosrockas.com"
-              className="inline-block"
-            >
-              <span className="heading-xl hover:opacity-60 transition-opacity">
-                HELLO@DEMETRIOSROCKAS.COM
-              </span>
-            </a>
-          </div>
-        </section>
       </main>
+      </div>
 
       <Footer />
     </>

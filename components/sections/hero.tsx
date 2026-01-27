@@ -25,8 +25,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="display-huge text-muted-foreground/30">CREATIVE</h1>
-          <h1 className="display-huge">DEVELOPER</h1>
+          <h1 className="display-hero text-muted-foreground/30">CREATIVE</h1>
+          <h1 className="display-hero">DEVELOPER</h1>
         </m.div>
       </m.div>
     </section>

@@ -138,12 +138,12 @@ const fragmentShader = `
     
     vec3 baseColor = vec3(1.0) * depthShading;
     vec3 darkColor = vec3(0.15);
-    vec3 limeColor = vec3(0.83, 1.0, 0.0);
+    vec3 accentColor = vec3(0.988, 0.345, 0.345);
     
     vec3 color = mix(darkColor, baseColor, diffuse * 0.7 + 0.3);
     color += specular * vec3(1.0);
     color += rim * vec3(0.3);
-    color = mix(color, limeColor, colorSplash);
+    color = mix(color, accentColor, colorSplash);
     
     float alpha = 0.15 + diffuse * 0.2 + fresnel * 0.15 + specular * 0.1 + colorSplash * 0.3;
     

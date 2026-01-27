@@ -1,5 +1,7 @@
 # AGENTS.md — AI Agent Guidelines
 
+> **DO NOT COMMIT THIS FILE.** This file is for local AI agent context only. Never stage, commit, or push this file to the repository.
+
 This document provides context for AI agents working on this codebase.
 
 ## Project Overview
@@ -217,7 +219,7 @@ Sticky header behavior:
 
 Lime background with:
 - Left: Location, internal links, external links
-- Right: Large email CTA ("HELLO@" + "DEMETRIOSROCKAS.COM")
+- Right: Large email CTA ("DEMETRIOSROCKAS@" + "PROTON.ME")
 
 ## File Naming Conventions
 

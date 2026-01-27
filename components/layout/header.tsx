@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as m from "motion/react-m";
 import { AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 
 const navItems = [
+  { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -17,17 +18,27 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [headerTop, setHeaderTop] = useState(0);
   const [isSticky, setIsSticky] = useState(false);
+  const [anchorBottom, setAnchorBottom] = useState(0);
   const { scrollY } = useScroll();
 
-  useEffect(() => {
-    setHeaderTop(window.innerHeight - HEADER_HEIGHT);
+  const getAnchorBottom = useCallback(() => {
+    const anchor = document.querySelector("[data-header-anchor]");
+    if (anchor) {
+      return anchor.getBoundingClientRect().bottom + window.scrollY - HEADER_HEIGHT;
+    }
+    return window.innerHeight - HEADER_HEIGHT;
   }, []);
 
+  useEffect(() => {
+    const bottom = getAnchorBottom();
+    setAnchorBottom(bottom);
+    setHeaderTop(bottom);
+  }, [getAnchorBottom]);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const heroBottom = window.innerHeight - HEADER_HEIGHT;
-    const newTop = Math.max(0, heroBottom - latest);
+    const newTop = Math.max(0, anchorBottom - latest);
     setHeaderTop(newTop);
-    setIsSticky(latest >= heroBottom);
+    setIsSticky(latest >= anchorBottom);
   });
 
   useEffect(() => {
@@ -41,21 +52,21 @@ export function Header() {
   return (
     <>
       <header 
-        className={`fixed left-0 right-0 z-50 ${
+        className={`fixed left-0 right-0 z-50 border-t border-b border-border ${
           isSticky 
-            ? "bg-background border-b border-border" 
-            : "border-t border-border"
+            ? "bg-background" 
+            : ""
         }`}
         style={{ top: headerTop }}
       >
-        <div className="container-full py-6 flex items-center justify-between">
+        <div className="container-full pt-6 pb-8 md:py-6 flex items-center justify-between">
           <Link href="/" className="font-bold text-sm tracking-tight">
             DEMETRIOS ROCKAS
           </Link>
 
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="mono text-xs tracking-wider hover:opacity-60 transition-opacity"
+            className="mono text-xs md:text-base tracking-wider hover:opacity-60 transition-opacity"
           >
             [ MENU ]
           </button>
@@ -82,7 +93,7 @@ export function Header() {
 
               <button
                 onClick={() => setIsMenuOpen(false)}
-                className="mono text-xs tracking-wider hover:opacity-60 transition-opacity"
+className="mono text-xs md:text-base tracking-wider hover:opacity-60 transition-opacity"
               >
                 [ CLOSE ]
               </button>
@@ -92,7 +103,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="absolute bottom-12 left-0 container-full flex gap-8 mono text-xs text-muted-foreground"
+              className="hidden lg:flex absolute bottom-12 left-0 container-full gap-8 mono text-xs text-muted-foreground"
             >
               <a
                 href="https://github.com/rockas-d"
@@ -125,14 +136,38 @@ export function Header() {
                       <Link
                         href={item.href}
                         onClick={() => setIsMenuOpen(false)}
-                        className="block py-2 display-huge relative group"
+                        className="block py-2 display-large relative group"
                       >
-                        <span className="absolute inset-0 bg-foreground scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-300" />
-                        <span className="relative mix-blend-difference">{item.label}</span>
+                        <span className="absolute inset-0 bg-accent scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-300" />
+                        <span className="relative group-hover:text-accent-foreground transition-colors">{item.label}</span>
                       </Link>
                     </m.li>
                   ))}
                 </ul>
+
+                <m.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="lg:hidden flex justify-end gap-6 mt-8 mono text-xs text-muted-foreground"
+                >
+                  <a
+                    href="https://github.com/rockas-d"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    GITHUB
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/demetriosrockas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    LINKEDIN
+                  </a>
+                </m.div>
               </nav>
             </div>
           </m.div>

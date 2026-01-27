@@ -25,7 +25,7 @@ export function AboutPreview() {
           <div className="grid-asymmetric-reverse items-start">
             <div className="relative">
               <Image
-                src="/me/me.png"
+                src="/me/me.jpeg"
                 alt="Demetrios Rockas"
                 width={600}
                 height={800}
