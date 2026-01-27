@@ -24,7 +24,9 @@ export function Header() {
   const getAnchorBottom = useCallback(() => {
     const anchor = document.querySelector("[data-header-anchor]");
     if (anchor) {
-      return anchor.getBoundingClientRect().bottom + window.scrollY - HEADER_HEIGHT;
+      return (
+        anchor.getBoundingClientRect().bottom + window.scrollY - HEADER_HEIGHT
+      );
     }
     return window.innerHeight - HEADER_HEIGHT;
   }, []);
@@ -51,17 +53,15 @@ export function Header() {
 
   return (
     <>
-      <header 
+      <header
         className={`fixed left-0 right-0 z-50 border-t border-b border-border ${
-          isSticky 
-            ? "bg-background" 
-            : ""
+          isSticky ? "bg-background" : ""
         }`}
         style={{ top: headerTop }}
       >
         <div className="container-full pt-6 pb-8 md:py-6 flex items-center justify-between">
           <Link href="/" className="font-bold text-sm tracking-tight">
-            DEMETRIOS ROCKAS
+            ROCKAS.DEV
           </Link>
 
           <button
@@ -88,12 +88,12 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 className="font-bold text-sm tracking-tight"
               >
-                DEMETRIOS ROCKAS
+                ROCKAS.DEV
               </Link>
 
               <button
                 onClick={() => setIsMenuOpen(false)}
-className="mono text-xs md:text-base tracking-wider hover:opacity-60 transition-opacity"
+                className="mono text-xs md:text-base tracking-wider hover:opacity-60 transition-opacity"
               >
                 [ CLOSE ]
               </button>
@@ -139,7 +139,9 @@ className="mono text-xs md:text-base tracking-wider hover:opacity-60 transition-
                         className="block py-2 display-large relative group"
                       >
                         <span className="absolute inset-0 bg-accent scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-300" />
-                        <span className="relative group-hover:text-accent-foreground transition-colors">{item.label}</span>
+                        <span className="relative group-hover:text-accent-foreground transition-colors">
+                          {item.label}
+                        </span>
                       </Link>
                     </m.li>
                   ))}
