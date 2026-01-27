@@ -15,7 +15,7 @@ export function MouseTracker() {
   }, []);
 
   return (
-    <div className="fixed top-6 right-32 z-40 hidden lg:flex items-center gap-6 mono text-xs text-muted-foreground">
+    <div className="fixed top-8 right-80 z-40 hidden lg:flex items-center gap-6 mono text-xs text-muted-foreground">
       <span>X : {position.x.toString().padStart(4, " ")}</span>
       <span>Y : {position.y.toString().padStart(4, " ")}</span>
     </div>

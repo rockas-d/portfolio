@@ -25,22 +25,26 @@ export function CustomCursor() {
     return href?.startsWith("mailto:") || false;
   }, []);
 
-  const getInteractiveParent = useCallback((element: Element | null): Element | null => {
-    if (!element) return null;
-    
-    const clickable = element.closest("a, button, [role='button']");
-    if (clickable) return clickable;
-    
-    let current: Element | null = element;
-    while (current) {
-      const hasPointer = window.getComputedStyle(current).cursor === "pointer";
-      if (hasPointer && !current.closest("a, button, [role='button']")) {
-        return current;
+  const getInteractiveParent = useCallback(
+    (element: Element | null): Element | null => {
+      if (!element) return null;
+
+      const clickable = element.closest("a, button, [role='button']");
+      if (clickable) return clickable;
+
+      let current: Element | null = element;
+      while (current) {
+        const hasPointer =
+          window.getComputedStyle(current).cursor === "pointer";
+        if (hasPointer && !current.closest("a, button, [role='button']")) {
+          return current;
+        }
+        current = current.parentElement;
       }
-      current = current.parentElement;
-    }
-    return null;
-  }, []);
+      return null;
+    },
+    [],
+  );
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -49,10 +53,10 @@ export function CustomCursor() {
 
       const target = document.elementFromPoint(e.clientX, e.clientY);
       const interactive = getInteractiveParent(target);
-      
+
       if (interactive) {
         const isEmail = isMailtoLink(interactive);
-        
+
         if (isEmail) {
           setCursorMode("email");
           setHoverTarget(null);
@@ -99,10 +103,12 @@ export function CustomCursor() {
     mass: 0.5,
   };
 
-  const centerX = hoverTarget ? hoverTarget.x + hoverTarget.width / 2 : position.x;
-  const centerY = hoverTarget ? hoverTarget.y + hoverTarget.height / 2 : position.y;
-  
-  const cornerSize = 12;
+  const centerX = hoverTarget
+    ? hoverTarget.x + hoverTarget.width / 2
+    : position.x;
+  const centerY = hoverTarget
+    ? hoverTarget.y + hoverTarget.height / 2
+    : position.y;
 
   const emailBoxWidth = 180;
   const emailBoxHeight = 44;
@@ -110,12 +116,12 @@ export function CustomCursor() {
   return (
     <>
       <div
-        className="fixed inset-0 z-[9999] pointer-events-none hidden lg:block mix-blend-difference"
+        className="fixed inset-0 z-9999 pointer-events-none hidden lg:block mix-blend-difference"
         style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.2s" }}
       >
         <m.div
           className="absolute top-0 w-px bg-white/30"
-          animate={{ 
+          animate={{
             x: centerX,
             height: hoverTarget ? hoverTarget.y : "100%",
           }}
@@ -123,15 +129,17 @@ export function CustomCursor() {
         />
         <m.div
           className="absolute bottom-0 w-px bg-white/30"
-          animate={{ 
+          animate={{
             x: centerX,
-            height: hoverTarget ? `calc(100vh - ${hoverTarget.y + hoverTarget.height}px)` : 0,
+            height: hoverTarget
+              ? `calc(100vh - ${hoverTarget.y + hoverTarget.height}px)`
+              : 0,
           }}
           transition={springConfig}
         />
         <m.div
           className="absolute left-0 h-px bg-white/30"
-          animate={{ 
+          animate={{
             y: centerY,
             width: hoverTarget ? hoverTarget.x : "100%",
           }}
@@ -139,9 +147,11 @@ export function CustomCursor() {
         />
         <m.div
           className="absolute right-0 h-px bg-white/30"
-          animate={{ 
+          animate={{
             y: centerY,
-            width: hoverTarget ? `calc(100vw - ${hoverTarget.x + hoverTarget.width}px)` : 0,
+            width: hoverTarget
+              ? `calc(100vw - ${hoverTarget.x + hoverTarget.width}px)`
+              : 0,
           }}
           transition={springConfig}
         />
@@ -193,14 +203,28 @@ export function CustomCursor() {
           transition={springConfig}
         >
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <line x1="20" y1="4" x2="20" y2="36" stroke="white" strokeWidth="1" />
-            <line x1="4" y1="20" x2="36" y2="20" stroke="white" strokeWidth="1" />
+            <line
+              x1="20"
+              y1="4"
+              x2="20"
+              y2="36"
+              stroke="white"
+              strokeWidth="1"
+            />
+            <line
+              x1="4"
+              y1="20"
+              x2="36"
+              y2="20"
+              stroke="white"
+              strokeWidth="1"
+            />
           </svg>
         </m.div>
       </div>
 
       <m.div
-        className="fixed z-[9999] pointer-events-none hidden lg:flex items-center justify-center whitespace-nowrap font-medium text-sm"
+        className="fixed z-9999 pointer-events-none hidden lg:flex items-center justify-center whitespace-nowrap font-medium text-sm"
         style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.2s" }}
         animate={{
           x: position.x - (cursorMode === "email" ? emailBoxWidth / 2 : 20),
