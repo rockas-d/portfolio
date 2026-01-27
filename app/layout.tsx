@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Demetrios Rockas | Creative Developer",
-    template: "%s | Demetrios Rockas",
+    default: "Demetrios Rockas",
+    template: "%s — Demetrios Rockas",
   },
   description:
-    "Demetrios Rockas — Creative developer crafting bold digital experiences through design and code.",
+    "Creative developer crafting bold digital experiences. Full-stack development, AI products, and immersive web experiences.",
   keywords: [
     "developer",
     "designer",
