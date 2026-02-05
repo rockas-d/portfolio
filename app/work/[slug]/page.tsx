@@ -90,8 +90,9 @@ const projects: Record<string, Project> = {
     category: "Math Visualization Tool",
     year: "2026",
     image: "/work/vertex.png",
-    href: "/work/vertex",
+    href: "https://vertex.cafe",
     stack: ["TypeScript", "Three.js", "WebGL", "GLSL Shaders"],
+    isExternal: true,
     description:
       "A WebGL-powered sandbox for exploring mathematics visually — from matrix transformations and Fourier decomposition to parametric surfaces and strange attractors. Part educational tool, part creative playground, built for anyone who learns by seeing.",
     challenge:
@@ -239,10 +240,29 @@ export default function CaseStudyPage() {
           >
             <div className="container-full">
               <div className="max-w-3xl">
+                {project.isExternal && (
+                  <m.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16"
+                  >
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mono text-xs bg-accent text-accent-foreground px-4 py-2 hover:opacity-80 transition-opacity"
+                    >
+                      <span>VISIT SITE</span>
+                      <span>→</span>
+                    </a>
+                  </m.div>
+                )}
+
                 <m.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.6, delay: project.isExternal ? 0.1 : 0 }}
                   className="mb-16"
                 >
                   <span className="mono text-xs text-muted-foreground mb-4 block">
@@ -309,23 +329,6 @@ export default function CaseStudyPage() {
                   </m.div>
                 )}
 
-                {project.isExternal && (
-                  <m.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                  >
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 mono text-xs hover:text-muted-foreground transition-colors"
-                    >
-                      <span>VISIT SITE</span>
-                      <span>→</span>
-                    </a>
-                  </m.div>
-                )}
               </div>
             </div>
           </section>
