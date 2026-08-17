@@ -137,7 +137,7 @@ Update your details in the following files:
    ];
    ```
 
-2. **Email** — Search for `demetriosrockas@proton.me` and replace globally
+2. **Email** — Search for `demetrios@rockas.dev` and replace globally
 
 3. **Location** — Update "SEATTLE, WA" in footer and contact page
 

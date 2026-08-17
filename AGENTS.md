@@ -219,7 +219,7 @@ Sticky header behavior:
 
 Lime background with:
 - Left: Location, internal links, external links
-- Right: Large email CTA ("DEMETRIOSROCKAS@" + "PROTON.ME")
+- Right: Large email CTA ("DEMETRIOS@" + "ROCKAS.DEV")
 
 ## File Naming Conventions
 

@@ -65,11 +65,11 @@ export function Footer() {
 
           <div className="text-right">
             <a
-              href="mailto:demetriosrockas@proton.me"
+              href="mailto:demetrios@rockas.dev"
               className="inline-block max-w-full"
             >
-              <h2 className="font-black uppercase leading-none tracking-tight mb-2 md:mb-4 text-[clamp(1.25rem,5vw,2rem)] sm:text-[clamp(1.5rem,6vw,3rem)] md:text-[clamp(2rem,7vw,5rem)] lg:text-[clamp(2.5rem,8vw,8rem)] xl:text-[clamp(3rem,9vw,10rem)]">DEMETRIOSROCKAS@</h2>
-              <span className="font-extrabold uppercase leading-none tracking-tight text-[clamp(1rem,4vw,1.5rem)] sm:text-[clamp(1.25rem,5vw,2rem)] md:text-[clamp(1.5rem,5.5vw,3.5rem)] lg:text-[clamp(2rem,6.5vw,6rem)] xl:text-[clamp(2.5rem,7vw,8rem)] block">PROTON.ME</span>
+              <h2 className="font-black uppercase leading-none tracking-tight mb-2 md:mb-4 text-[clamp(1.25rem,5vw,2rem)] sm:text-[clamp(1.5rem,6vw,3rem)] md:text-[clamp(2rem,7vw,5rem)] lg:text-[clamp(2.5rem,8vw,8rem)] xl:text-[clamp(3rem,9vw,10rem)]">DEMETRIOS@</h2>
+              <span className="font-extrabold uppercase leading-none tracking-tight text-[clamp(1rem,4vw,1.5rem)] sm:text-[clamp(1.25rem,5vw,2rem)] md:text-[clamp(1.5rem,5.5vw,3.5rem)] lg:text-[clamp(2rem,6.5vw,6rem)] xl:text-[clamp(2.5rem,7vw,8rem)] block">ROCKAS.DEV</span>
             </a>
 
             <div className="mt-8">
