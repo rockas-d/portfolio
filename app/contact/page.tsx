@@ -56,10 +56,10 @@ export default function ContactPage() {
                   <div>
                     <span className="mono text-xs text-muted-foreground mb-4 block">[ EMAIL ]</span>
                     <a
-                      href="mailto:demetriosrockas@proton.me"
+                      href="mailto:demetrios@rockas.dev"
                       className="heading-lg hover:text-muted-foreground transition-colors block"
                     >
-                      DEMETRIOSROCKAS@PROTON.ME
+                      DEMETRIOS@ROCKAS.DEV
                     </a>
                   </div>
 
